@@ -15,13 +15,18 @@ soup = BeautifulSoup(r.content, "lxml")
 
 
 ## collecting all the paragraph tags in the page source
-data = soup.find("div", { "class" : "content-layout thread-tree-paginated" })
 
-list_items =  data.find_all('li')
+discussion_board_data = soup.find("div", { "class" : "content-layout thread-tree-paginated" })
+posts =  discussion_board_data.find_all('li')
+
+user_data = []
 
 for i in range(0,100):
-	print list_items[i]
-	print ''
+	post = posts[i]
+	post_data = post.find_all('strong')
+	username = str(post_data[0])[len('<strong>'):].strip('</strong>')
+	date = str(post_data[1])[len('<strong>'):].strip('</strong>')
+	print username, date
 
 
 # ## creating a list to store the data
