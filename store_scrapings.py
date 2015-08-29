@@ -24,48 +24,19 @@ posts =  discussion_board_data.find_all('li')
 
 
 user_data = []
+nonsense_data = []
 
-for i in range(0,100):
-	post = posts[i]
-	post_data = post.find_all('strong')
-	username = str(post_data[0])[len('<strong>'):].strip('</strong>')
-	timestamp = str(post_data[1])[len('<strong>'):].strip('</strong>')
+for post in posts:
+    try:
+        post_data = post.find_all('strong')
+        username = str(post_data[0])[len('<strong>'):].strip('</strong>')
+        timestamp = str(post_data[1])[len('<strong>'):].strip('</strong>')
+        post = UserPost(username = username, timestamp = timestamp)
+        session.add(post)
+        session.commit()
+        print 'added post!'
+    except IndexError:
+        nonsense_data.append(post_data)
+        print 'CRAPPY HTML!'
 
-	post = UserPost(username = username, timestamp = timestamp)
-	session.add(post)
-	session.commit()
-	print 'added post!'
-
-
-# ## create ##
-# myFirstRestaurant = Restaurant( name = "Pizza Palace")
-# session.add(myFirstRestaurant)
-# session.commit()
-
-# cheesepizza = MenuItem( name = "Cheese Pizza", description = "Made with all natural ingredients"
-# 				, course = "Entree", price = "$8.99", restaurant = myFirstRestaurant)
-# session.add(cheesepizza)
-# session.commit()
-
-
-# ## read ##
-# firstResult = session.query(Restaurant).first()
-# print firstResult.name
-
-# items =  session.query(Restaurant).all()
-# for item in items:
-# 	print item.name
-
-
-# ## update ##
-# urbanVeggieBurger = session.query(MenuItem).filter_by(id = 11).one()
-# urbanVeggieBurger.price = '$2.99'
-# session.add(urbanVeggieBurger)
-# session.commit()
-
-
-# ## delete ##
-# spinach = session.query(MenuItem).filter_by(name = "Spinach Ice Cream").one()
-# session.delete(spinach)
-# session.commit()
 
