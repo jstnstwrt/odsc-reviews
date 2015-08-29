@@ -13,7 +13,7 @@ r = requests.get(url)
 ## parsing the page source into usable data
 soup = BeautifulSoup(r.content, "lxml")
 
-
+#%%
 ## collecting all the paragraph tags in the page source
 
 discussion_board_data = soup.find("div", { "class" : "content-layout thread-tree-paginated" })
@@ -21,13 +21,28 @@ posts =  discussion_board_data.find_all('li')
 
 user_data = []
 
-for i in range(0,100):
-	post = posts[i]
-	post_data = post.find_all('strong')
-	username = str(post_data[0])[len('<strong>'):].strip('</strong>')
-	date = str(post_data[1])[len('<strong>'):].strip('</strong>')
-	print username, date
+nonsense_data = []
 
+count = 0
+
+for i in range(0,len(posts)-1):
+    try:
+        post = posts[i]
+        post_data = post.find_all('strong')
+        username = str(post_data[0])[len('<strong>'):].strip('</strong>')
+        date = str(post_data[1])[len('<strong>'):].strip('</strong>')
+        user_data.append(username + ' ' + date)
+        print username, date
+    except IndexError:
+        nonsense_data.append(post_data)
+        print 'CRAPPY HTML!'
+        count += 1
+        
+        
+
+
+
+#%%
 
 # ## creating a list to store the data
 # cl_listings = []
