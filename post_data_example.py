@@ -1,1 +1,0 @@
-post = '<li> <a name="796871"></a><a href="viewmsg.asp?MessageID=796871&amp;boardID=12&amp;page=1#796871">I think anyone that compares slavery with a profile has to be considered for SPOTY.</a>  - by <strong>scoe</li>rong>, <strong>8/28/2015 2:52:22 PM</strong> (30 reads)'
