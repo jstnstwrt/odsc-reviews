@@ -17,7 +17,7 @@ class UserPost(Base):
 
 	id = Column( Integer, primary_key = True)
 	username = Column( String(80), nullable = False)
-	timestamp = Column( String(80), nullable = False)
+	# timestamp = Column( String(80), nullable = False)
 	
 ## config code
 
