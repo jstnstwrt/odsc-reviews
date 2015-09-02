@@ -1,0 +1,1 @@
+create table x as select username, count(username) from user_post;
