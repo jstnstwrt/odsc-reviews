@@ -7,9 +7,9 @@ import numpy as np
 # matplotlib.style.use('ggplot')
 
 
-BASE_DIR = os.path.dirname(os.path.abspath('/Users/hugobowne-anderson/repos/odsc-erotic-review'))
-db_path = os.path.join(BASE_DIR, "odsc-erotic-review/user_frequency.db")
-#db_path = 'user_count.db'
+#BASE_DIR = os.path.dirname(os.path.abspath('/Users/hugobowne-anderson/repos/odsc-erotic-review'))
+#db_path = os.path.join(BASE_DIR, "odsc-erotic-review/user_frequency.db")
+db_path = 'user_count.db'
 conn = sqlite3.connect(db_path)
 
 
