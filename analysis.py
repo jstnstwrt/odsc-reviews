@@ -35,42 +35,63 @@ plt.xticks(ind+width/2., list(df.name[0:N]) , rotation='vertical' )
 #plt.yticks(np.arange(0,81,10))
 #plt.legend( (p1[0], p2[0]), ('Men', 'Women') )
 
+plt.tick_params(
+    axis='x',          # changes apply to the x-axis
+    which='both',      # both major and minor ticks are affected
+    bottom='on',      # ticks along the bottom edge are off
+    top='off',         # ticks along the top edge are off
+    labelbottom='on') # labels along the bottom edge are off
+    
+plt.tick_params(
+    axis='y',          # changes apply to the x-axis
+    which='both',      # both major and minor ticks are affected
+    bottom='on',      # ticks along the bottom edge are off
+    right='off',         # ticks along the top edge are off
+    labelbottom='off') # labels along the bottom edge are off
 
 plt.tight_layout()
 plt.savefig('user_hist_top_100.eps')
 plt.show()
 
-#%%
-fig = plt.figure()
-df['number'].hist(bins=300)
-ax = fig.add_subplot(1,1,1)
-ax.set_yscale('log')
-ax.set_xscale('log')
-plt.show()
 
-#%%
+##
+
 sorted_data = np.array(df.number)
 p1 = np.cumsum(sorted_data)/float(sum(sorted_data))*100
 #plt.step(sorted_data[::-1], np.arange(sorted_data.size))
 p2 = (np.arange(sorted_data.size)+1)/float(sorted_data.size)*100
-fig = plt.figure()
+fig = plt.figure(figsize=(16,8))
+
+plt.tick_params(
+    axis='x',          # changes apply to the x-axis
+    which='both',      # both major and minor ticks are affected
+    bottom='on',      # ticks along the bottom edge are off
+    top='off',         # ticks along the top edge are off
+    labelbottom='on') # labels along the bottom edge are off
+    
+plt.tick_params(
+    axis='y',          # changes apply to the x-axis
+    which='both',      # both major and minor ticks are affected
+    bottom='on',      # ticks along the bottom edge are off
+    right='off',         # ticks along the top edge are off
+    labelbottom='off') # labels along the bottom edge are off
 
 ax = fig.add_subplot(1,1,1)
 ax.set_xscale('log')
+ax.set_xticklabels([0.1,0.1,1,10,100])
 #ax.set_xscale('log')
-
+plt.xlim(0.1,100)
 plt.plot( p2 ,p1,linewidth=3)
-
-plt.title('Percentage of Posts made by To Users')
+#plt.absolute_importxlim( xmin = 1 )
+plt.title('Percentage of Posts made by Top Users')
 plt.ylabel('Percentage of Posts/Comments')
 plt.xlabel('Percentage of Top Users')
 plt.tight_layout()
+#ax.axis('on')
+#ax.spines['right'].set_visible(True)
 
-#fig.savefig('top_users.pdf')
+#plt.axis([min(p2), max(p2), min(p1), max(p1)]) 
+fig.savefig('top_users.eps')
 plt.show()
 
-
-#%%
-df['number'].hist(bins=300)
-plt.show()
 
