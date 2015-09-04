@@ -7,9 +7,9 @@ import numpy as np
 # matplotlib.style.use('ggplot')
 
 
-#BASE_DIR = os.path.dirname(os.path.abspath('/Users/hugobowne-anderson/repos/odsc-erotic-review'))
-#db_path = os.path.join(BASE_DIR, "odsc-erotic-review/user_frequency.db")
-db_path = 'user_count.db'
+BASE_DIR = os.path.dirname(os.path.abspath('/Users/hugobowne-anderson/repos/odsc-erotic-review'))
+db_path = os.path.join(BASE_DIR, "odsc-erotic-review/user_frequency.db")
+#db_path = 'user_count.db'
 conn = sqlite3.connect(db_path)
 
 
@@ -37,4 +37,40 @@ plt.xticks(ind+width/2., list(df.name[0:N]) , rotation='vertical' )
 
 
 plt.tight_layout()
+plt.savefig('user_hist_top_100.eps')
 plt.show()
+
+#%%
+fig = plt.figure()
+df['number'].hist(bins=300)
+ax = fig.add_subplot(1,1,1)
+ax.set_yscale('log')
+ax.set_xscale('log')
+plt.show()
+
+#%%
+sorted_data = np.array(df.number)
+p1 = np.cumsum(sorted_data)/float(sum(sorted_data))*100
+#plt.step(sorted_data[::-1], np.arange(sorted_data.size))
+p2 = (np.arange(sorted_data.size)+1)/float(sorted_data.size)*100
+fig = plt.figure()
+
+ax = fig.add_subplot(1,1,1)
+ax.set_xscale('log')
+#ax.set_xscale('log')
+
+plt.plot( p2 ,p1,linewidth=3)
+
+plt.title('Percentage of Posts made by To Users')
+plt.ylabel('Percentage of Posts/Comments')
+plt.xlabel('Percentage of Top Users')
+plt.tight_layout()
+
+#fig.savefig('top_users.pdf')
+plt.show()
+
+
+#%%
+df['number'].hist(bins=300)
+plt.show()
+
