@@ -16,9 +16,9 @@ import numpy as np
 #HERE WE SET DIR., MAKE SQL CONNECTION, PULL DATAFRAME
 ##########################################################################################
 #YOU MAY NEED TO SET THE PATH CORRECTLY:
-BASE_DIR = os.path.dirname(os.path.abspath('/Users/hugobowne-anderson/repos/odsc-erotic-review'))
-db_path = os.path.join(BASE_DIR, "odsc-erotic-review/user_frequency.db")
-#db_path = 'user_count.db' #this is the database
+#BASE_DIR = os.path.dirname(os.path.abspath('/Users/hugobowne-anderson/repos/odsc-erotic-review'))
+#db_path = os.path.join(BASE_DIR, "odsc-erotic-review/user_frequency.db")
+db_path = 'user_count.db' #this is the database
 conn = sqlite3.connect(db_path) #establish connection to db
 
 
