@@ -66,7 +66,7 @@ plt.tick_params(
 
 plt.tight_layout()
 plt.savefig('user_hist_top_100.pdf')
-plt.show()
+#plt.show()
 
 
 ##########################################################################################
@@ -106,7 +106,7 @@ plt.xlabel('Percentage of Top Users')
 plt.tight_layout()
 
 fig.savefig('top_users_v_1.pdf')
-plt.show()
+#plt.show()
 
 
 ##########################################################################################
@@ -156,7 +156,7 @@ ax2.set_ylabel('Total # of Posts/Comments', color='blue')
 #plt.axis([min(p2), max(p2), min(p1), max(p1)]) 
 fig.savefig('top_users_v_2.pdf')
 plt.tight_layout()
-plt.show()
+#plt.show()
 
 ##########################################################################################
 #WE GENERATE AND SAVE THE 4TH PLOT: A HISTOGRAM OF # OF POSTS BY USERNAME
@@ -174,18 +174,25 @@ plt.tick_params(
     bottom='on',      # ticks along the bottom edge are off
     top='off',         # ticks along the top edge are off
     labelbottom='on') # labels along the bottom edge are off
+    
+plt.tick_params(
+    axis='y',          # changes apply to the x-axis
+    which='both',      # both major and minor ticks are affected
+    bottom='on',      # ticks along the bottom edge are off
+    right='off',         # ticks along the top edge are off
+    labelbottom='off') # labels along the bottom edge are off
 
 ax1 = fig.add_subplot(1,1,1)
-ax2 = ax1.twinx()
+#ax2 = ax1.twinx()
 plt.grid(False)
-plt.title('Percentage of Posts made by Top Users')
-ax1.set_ylabel('Percentage of Posts/Comments')
+plt.title('Percentage of Posts made by Most Frequent Users of theeroticreview.com')
+ax1.set_ylabel('Percentage of Posts')
 ax1.set_xlabel('Percentage of Users')
 ind = 5
 xax = np.arange(0,ind)
 width = 0.7
 
-plt.xticks( xax + width/2., list(['top 0.1%','top 0.1% - 1%','top 1% - 10%','top 10% - 25%','top 25% - 50%'])  )
+plt.xticks( xax + width/2., list(['0% - 0.1%',' 0.1% - 1%','1% - 10%','10% - 25%','25% - 50%'])  )
 
 
 p3 = [max(p1[p2<0.1]) , max(p1[p2<1]) -max(p1[p2<0.1]) , max(p1[p2<10])-max(p1[p2<1])  , max(p1[p2<25]) -max(p1[p2<10]), max(p1[p2<50])-max(p1[p2<25])]
@@ -196,12 +203,12 @@ ax1.bar(xax, p3,   width, color='r')
 
 #ax2 = ax1.twinx()
 
-ax2.bar(xax, sum(sorted_data)/100*np.asarray(p3),   width, color='r')
-ax2.set_ylabel('Total # of Posts/Comments')
+#ax2.bar(xax, sum(sorted_data)/100*np.asarray(p3),   width, color='r')
+#ax2.set_ylabel('Total # of Posts/Comments')
 #ax.axis('on')
 #ax.spines['right'].set_visible(True)
 
 #plt.axis([min(p2), max(p2), min(p1), max(p1)]) 
 fig.savefig('top_users_v_3.pdf')
 plt.tight_layout()
-plt.show()
+#plt.show()
