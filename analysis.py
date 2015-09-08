@@ -16,9 +16,9 @@ import numpy as np
 #HERE WE SET DIR., MAKE SQL CONNECTION, PULL DATAFRAME
 ##########################################################################################
 #YOU MAY NEED TO SET THE PATH CORRECTLY:
-#BASE_DIR = os.path.dirname(os.path.abspath('/Users/hugobowne-anderson/repos/odsc-erotic-review'))
-#db_path = os.path.join(BASE_DIR, "odsc-erotic-review/user_frequency.db")
-db_path = 'user_count.db' #this is the database
+BASE_DIR = os.path.dirname(os.path.abspath('/Users/hugobowne-anderson/repos/odsc-erotic-review'))
+db_path = os.path.join(BASE_DIR, "odsc-erotic-review/user_frequency.db")
+#db_path = 'user_count.db' #this is the database
 conn = sqlite3.connect(db_path) #establish connection to db
 
 
@@ -184,14 +184,15 @@ plt.tick_params(
 
 ax1 = fig.add_subplot(1,1,1)
 #ax2 = ax1.twinx()
-plt.grid(False)
-plt.title('Percentage of Posts made by Most Frequent Users of theeroticreview.com')
-ax1.set_ylabel('Percentage of Posts')
-ax1.set_xlabel('Percentage of Users')
+plt.grid(True)
+plt.title('Proportion of posts made by the most frequent users of theeroticreview.com')
+ax1.set_ylabel('Perceentage of Posts (of a total 57,053 posts)')
+ax1.set_xlabel('Users Grouped by Freqency (as a percentage of ~3,000 users)')
 ind = 5
 xax = np.arange(0,ind)
 width = 0.7
 
+#plt.yticks( list([1,2,3,4,5])  )
 plt.xticks( xax + width/2., list(['0% - 0.1%',' 0.1% - 1%','1% - 10%','10% - 25%','25% - 50%'])  )
 
 
